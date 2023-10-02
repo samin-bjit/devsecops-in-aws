@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  creationTimestamp: null
+  name: registration-service-alertrule
+  namespace: prometheus
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+  - name: registration_service_alerts
+    rules:
+    - alert: RegistrationDeploymentDown
+      annotations:
+        description: One or more Registration Service Replicas has been down for more than 1 minutes.
+        summary: Registration Service replica is down (instance {{ $labels.instance }})
+      expr: kube_deployment_status_replicas_unavailable{deployment="registration-service-deployment"} == 1
+      for: 1m
+      labels:
+        severity: critical
+    - alert: RegistrationHighCPUUsage
+      annotations:
+        description: Registration Service pods are over their CPU usage limit.
+        summary: Registration Service pods High CPU usage.
+      expr: 100 * (sum(rate(container_cpu_usage_seconds_total{namespace="vaccination-system-dev", pod=~"registration-service-deployment.*"}[5m])) / sum(kube_pod_container_resource_limits{namespace="vaccination-system-dev", resource="cpu", pod=~"registration-service-deployment.*"})) >=80
+      for: 5m
+      labels:
+        job: registration_service_alerts
+        severity: critical
