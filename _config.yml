@@ -1,0 +1,5 @@
+title: Scaling your Application with DevSecOps
+description: Learn to build your own DevSecOps pipeline for microservice applications using AWS services.
+show_downloads: true
+google_analytics:
+theme: jekyll-theme-cayman
