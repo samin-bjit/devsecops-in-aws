@@ -2,7 +2,65 @@
 
 # *Scaling your Application with DevSecOps*
 
+## Overview
+
+DevOps is a method of creating software that integrates software development and IT operations to deliver software faster and ensure continuous delivery with high quality. However, security is often becomes an afterthought when designing and managing a CI/CD pipeline, infrastructure, etc., for deploying large-scale applications. Therefore, it is important to incorporate security in every step of the Software Development Life Cycle (SDLC). DevSecOps is the practice of doing this by automating security throughout the SDLC by combining development, operations, and security into a single pipeline.
+
+In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages. Finally, we will setup monitoring in various stages.
+
+For the project you might require basic knowledge of the following tools and services:
+### AWS Services
+- IAM (Identity and Access Management)
+- S3 (Simple Storage Service)
+- ECR (Elastic Container Registry)
+- AWS DevTools (e.g. CodeCommit, CodBuild, CodePipeline)
+- EKS (Elastic Kubernetes Service)
+- SNS (Simple Notification Service)
+- SES (Simple Email Service)
+- Route 53
+- EC2 (Elastic Compute Cloud)
+- Lambda
+- Security Hub
+- System Manager (Parameter Store)
+- RDS (Relational Database Service)
+
+### Monitoring Tools
+- Prometheus
+- Grafana
+- Prometheus-Operator
+
+### Frameworks
+- Laravel
+- NextJs
+
+### Database
+- MySQL
+
+
+In this project we used several popular security tools such as `PHPStan`, `SonarQube`, `OWASP Dependency-Check`, `Trivy` and `OWASP ZAP`. Let's briefly discuss each of them.
+
+**PHPStan**
+
+PHPStan is a static analysis system for PHP projects. It scans your entire codebase and looks for both obvious and tricky bugs, even in rarely executed if statements that aren’t covered by tests. It can be run on your machine and in CI to prevent bugs from reaching your customers in production. PHPStan is open-source, free, and offers extensions for popular frameworks like Symfony, Laravel, or Doctrine. It also understands code that takes advantage of magic methods and properties.
+
+**Sonarqube**
+
+SonarQube is an open-source platform for continuous inspection of code quality and security. SonarQube identifies code smells, bugs, security vulnerabilities, and code duplications in your source code. It supports a large number of programming languages, including Java, C/C++, Python, JavaScript, and more. SonarQube can be integrated into CI/CD pipelines to automate code quality and security checks at various stages of development. It generates detailed reports and provides a dashboard for visualizing code quality and security issues. SonarQube is used by development teams to maintain and improve the overall quality and security of their codebases. It helps identify and fix issues early in the development process, reducing technical debt and the risk of security vulnerabilities.
+
+**OWASP Dependency Check**
+
+OWASP Dependency Check is a Software Composition Analysis (SCA) tool that detects publicly disclosed vulnerabilities contained within a project’s dependencies. It does this by determining if there is a Common Platform Enumeration (CPE) identifier for a given dependency. If found, it generates a report linking to the associated CVE entries. Dependency Check can be used to scan applications (and their dependent libraries) to identify any known vulnerable components. It helps address the problem of using known vulnerable components in applications, which can pose security risks.
+
+**Trivy**
+
+Trivy is an open-source vulnerability scanner designed specifically for containerized applications. It focuses on scanning container images and filesystems for security vulnerabilities.Trivy can scan Docker containers and OCI (Open Container Initiative) images.It maintains a comprehensive database of Common Vulnerabilities and Exposures (CVE) to identify known vulnerabilities.Trivy is known for its speed and simplicity, making it easy to integrate into CI/CD pipelines.Trivy is typically used by DevOps and security teams to ensure the security of containerized applications by identifying and mitigating vulnerabilities in container images. It is often integrated into CI/CD pipelines to automate security checks during the build and deployment process.
+
+**OWASP ZAP**
+
+OWASP ZAP (Zed Attack Proxy) is the world’s most widely used web app scanner. It is a free and open-source tool actively maintained by a dedicated international team of volunteers. ZAP helps identify security vulnerabilities in web applications by scanning them for potential weaknesses. It provides a range of options for security automation and has add-ons contributed by the community to extend its functionality.
+
 ## Application Source Code
+
 [Registration-service](https://github.com/samin-bjit/vaccination-registration)
 
 [Frontend](https://github.com/samin-bjit/vaccination-frontend)
@@ -257,7 +315,6 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'%' IDENTIFIED BY '<new-password>'; 
 FLUSH PRIVILEGES;
 ```
-
 
 ### EKS-auth ConfigMap
 
@@ -844,7 +901,13 @@ sudo su - postgres
 createuser sonar
 ```
 
-**Step 5:** Execute the below three lines (one by one)
+**Step 5:**  Switch to sql shell by entering this command
+
+```bash
+psql
+```
+
+**Step 6:** Execute the below three lines (one by one)
 
 ```sql
 ALTER USER sonar WITH ENCRYPTED password 'password';
@@ -860,7 +923,9 @@ CREATE DATABASE sonarqube OWNER sonar;
 
 (Exited from the shell)
 
-**Step 6:** Now install SonarQube Web App
+Also, exit from postgres and return to Ubuntu user.
+
+**Step 7:** Now install SonarQube Web App
 
 ```bash
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.7.zip
@@ -872,13 +937,13 @@ sudo unzip sonarqube-7.7.zip -d /opt
 sudo mv /opt/sonarqube-7.7 /opt/sonarqube -v
 ```
 
-**Step 7:** Create Group and User:
+**Step 8:** Create Group and User:
 
 ```bash
 sudo groupadd sonar
 ```
 
-**Step 8:** Now add the user with directory access
+**Step 9:** Now add the user with directory access
 
 ```bash
 sudo useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
@@ -886,7 +951,7 @@ sudo useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar
 sudo chown sonar:sonar /opt/sonarqube -R
 ```
 
-**Step 9:** Modify sonar.properties file
+**Step 10:** Modify sonar.properties file
 
 ```bash
 sudo vi /opt/sonarqube/conf/sonar.properties
@@ -914,13 +979,13 @@ Edit the sonar script file and set RUN_AS_USER
 sudo vi /opt/sonarqube/bin/linux-x86-64/sonar.sh
 ```
 
-**Step 10:** Add enable the below line
+**Step 11:** Add enable the below line
 
 ```bash
 RUN_AS_USER=sonar
 ```
 
-**Step 11:** Create Sonar as a service(this will enable to start automatically when you restart the server)
+**Step 12:** Create Sonar as a service(this will enable to start automatically when you restart the server)
 
 * Execute the below command:
 
@@ -964,7 +1029,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-**Step 12:** Now, start the servcie
+**Step 13:** Now, start the servcie
 
 ```bash
 sudo systemctl start sonar
@@ -978,7 +1043,17 @@ sudo systemctl enable sonar
 sudo systemctl status sonar
 ```
 
-**Step 13:** Login to SonarQube server with Instance's IP Address and Port Number 9000 (SonarQube's port number)
+**Step 14:**  (Now Restart EC2 instance by going to AWS console and stop/start the EC2 instance)  
+
+* Once restarted EC2 instance, login again and check the Sonar logs:  
+
+```bash
+tail -f /opt/sonarqube/logs/sonar.log
+```
+
+* Make sure you get the below message that says sonarqube is up..
+
+**Step 15:** Login to SonarQube server with Instance's IP Address and Port Number 9000 (SonarQube's port number)
 
 ```bash
 Login Username: Admin
