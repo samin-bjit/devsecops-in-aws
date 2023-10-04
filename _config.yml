@@ -1,5 +1,5 @@
-title: DevSecOps in AWS
-description: DevSecOps project created using AWS services
+title: Scaling your Application with DevSecOps
+description: Learn to build your own DevSecOps pipeline for microservice applications using AWS services.
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
