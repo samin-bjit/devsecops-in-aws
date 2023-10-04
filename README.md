@@ -391,7 +391,7 @@ kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-pat
 
 ![](./assets/S3-bucket-3.png)
 
-## ## Security Scan Logs collection with AWS Lambda
+## Security Scan Logs collection with AWS Lambda
 
 **Step 1:** First, create a lambda function named `ImportVulToSecurityHub`. Setting the name to the aforementioned value is crucial because inside each security tools scan buildspec file we will be invoking the function by name.
 
