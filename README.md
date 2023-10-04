@@ -63,6 +63,19 @@ Trivy is an open-source vulnerability scanner designed specifically for containe
 
 OWASP ZAP (Zed Attack Proxy) is the world’s most widely used web app scanner. It is a free and open-source tool actively maintained by a dedicated international team of volunteers. ZAP helps identify security vulnerabilities in web applications by scanning them for potential weaknesses. It provides a range of options for security automation and has add-ons contributed by the community to extend its functionality.
 
+
+## Application Architecture
+
+The following image displays the architecture of a microservice applicaiton
+
+![](assets/application-architecture.png)
+
+## AWS Architecture
+
+The following image potrays the architecture of the entire infrastructure in AWS.
+
+![](Architecture.gif)
+
 ## Application Source Code
 
 [Registration-service](https://github.com/samin-bjit/vaccination-registration)
