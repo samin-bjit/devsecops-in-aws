@@ -9,7 +9,9 @@ DevOps is the practice of developing software that integrates software developme
 In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages. Finally, we will setup monitoring in various stages.
 
 For the project you might require basic knowledge of the following tools and services:
+
 ### AWS Services
+
 - IAM (Identity and Access Management)
 - S3 (Simple Storage Service)
 - ECR (Elastic Container Registry)
@@ -25,17 +27,19 @@ For the project you might require basic knowledge of the following tools and ser
 - RDS (Relational Database Service)
 
 ### Monitoring Tools
+
 - Prometheus
 - Grafana
 - Prometheus-Operator
 
 ### Frameworks
+
 - Laravel
 - NextJs
 
 ### Database
-- MySQL
 
+- MySQL
 
 In this project we used several popular security tools such as `PHPStan`, `SonarQube`, `OWASP Dependency-Check`, `Trivy` and `OWASP ZAP`. Let's briefly discuss each of them.
 
@@ -516,6 +520,24 @@ CodePipeline Stages and Action Group
 
 - This action group will be provided by CodeBuild Stage. You can find the process of integrating this "OWASP-ZAP" tool in "Security Tools" section.
 - You can find the process of integrating this "OWASP-ZAP" tool in the repository.
+
+`You can choose either GitHub configuration or CodeCommit configuration` 
+
+## GitHub Conection
+
+**Step 1:** First, Go to AWS Developer tools setting > Connection.
+
+**Step 2:** Selec the connection provider > Give a name > Click on "Create Connection".
+
+![](./assets/Create-connection-github.png)
+
+**Step 3:** By clicking on "Install apps", it will redirect you to your github account and you have to enter your github password and give acccess to your repository.
+
+![](./assets/aws-connector-github.png)
+
+**Step 4:** Then, you will get your installed apps and you can authenticate your github connection.
+
+![](./assets/aws-connect-apps.png)
 
 ## CodeCommit Configuration
 
