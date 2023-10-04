@@ -585,75 +585,75 @@ CodePipeline Stages and Action Group
 ```json
 {
 
-    "Version": "2012-10-17",
+  "Version": "2012-10-17",
 
-    "Statement": [
+  "Statement": [
 
-        {
+    {
 
-            "Effect": "Allow",
+      "Effect": "Allow",
 
-            "Action": [
+      "Action": [
 
-                "ecr:GetAuthorizationToken",
+        "ecr:GetAuthorizationToken",
 
-                "ecr:GetDownloadUrlForLayer",
+        "ecr:GetDownloadUrlForLayer",
 
-                "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchCheckLayerAvailability",
 
-                "ecr:GetRepositoryPolicy",
+        "ecr:GetRepositoryPolicy",
 
-                "ecr:DescribeRepositories",
+        "ecr:DescribeRepositories",
 
-                "ecr:ListImages",
+        "ecr:ListImages",
 
-                "ecr:DescribeImages",
+        "ecr:DescribeImages",
 
-                "ecr:BatchGetImage",
+        "ecr:BatchGetImage",
 
-                "ecr:InitiateLayerUpload",
+        "ecr:InitiateLayerUpload",
 
-                "ecr:UploadLayerPart",
+        "ecr:UploadLayerPart",
 
-                "ecr:CompleteLayerUpload",
+        "ecr:CompleteLayerUpload",
 
-                "ecr:PutImage"
+        "ecr:PutImage"
 
-            ],
+      ],
 
-            "Resource": "*"
+      "Resource": "*"
 
-        },
+    },
 
-        {
+    {
 
-            "Effect": "Allow",
+      "Effect": "Allow",
 
-            "Action": [
+      "Action": [
 
-                "iam:CreateServiceLinkedRole"
+        "iam:CreateServiceLinkedRole"
 
-            ],
+      ],
 
-            "Resource": "*",
+      "Resource": "*",
 
-            "Condition": {
+      "Condition": {
 
-                "StringEquals": {
+        "StringEquals": {
 
-                    "iam:AWSServiceName": [
+          "iam:AWSServiceName": [
 
-                        "replication.ecr.amazonaws.com"
+            "replication.ecr.amazonaws.com"
 
-                    ]
+          ]
 
-                }
+        }
 
-            }
+      }
 
-        }
+    }
 
-    ]
+  ]
 
 }
 ```
@@ -725,27 +725,27 @@ CodePipeline Stages and Action Group
 ```json
 {
 
-    "Version": "2012-10-17",
+  "Version": "2012-10-17",
 
-    "Statement": [
+  "Statement": [
 
-        {
+    {
 
-            "Effect": "Allow",
+      "Effect": "Allow",
 
-            "Action": [
+      "Action": [
 
-                "eks:DescribeCluster",
+        "eks:DescribeCluster",
 
-                "eks:ListClusters"
+        "eks:ListClusters"
 
-            ],
+      ],
 
-            "Resource": "*"
+      "Resource": "*"
 
-        }
+    }
 
-    ]
+  ]
 
 }
 ```
@@ -779,25 +779,25 @@ CodePipeline Stages and Action Group
 ```json
 {
 
-    "Version": "2012-10-17",
+  "Version": "2012-10-17",
 
-    "Statement": [
+  "Statement": [
 
-        {
+    {
 
-            "Effect": "Allow",
+      "Effect": "Allow",
 
-            "Principal": {
+      "Principal": {
 
-                "Service": "codepipeline.amazonaws.com"
+        "Service": "codepipeline.amazonaws.com"
 
-            },
+      },
 
-            "Action": "sts:AssumeRole"
+      "Action": "sts:AssumeRole"
 
-        }
+    }
 
-    ]
+  ]
 
 }
 ```
