@@ -15,6 +15,7 @@ In this project, we will build a complete CI/CD pipeline for a microservice appl
     - [Monitoring Tools](#monitoring-tools)
     - [Frameworks](#frameworks)
     - [Database](#database)
+    - [Security Tools](#security-tools)
   - [Application Architecture](#application-architecture)
   - [AWS Architecture](#aws-architecture)
   - [Application Source Code](#application-source-code)
@@ -63,9 +64,10 @@ In this project, we will build a complete CI/CD pipeline for a microservice appl
   - [**OWASP ZAP Report After**](#owasp-zap-report-after)
 
 
-For the project you might require basic knowledge of the following tools and services:
 
 ### AWS Services
+
+For the project you might require basic knowledge of the following tools and services:
 
 - IAM (Identity and Access Management)
 - S3 (Simple Storage Service)
@@ -95,6 +97,9 @@ For the project you might require basic knowledge of the following tools and ser
 ### Database
 
 - MySQL
+
+
+### Security Tools
 
 In this project we used several popular security tools such as `PHPStan`, `SonarQube`, `OWASP Dependency-Check`, `Trivy` and `OWASP ZAP`. Let's briefly discuss each of them.
 
