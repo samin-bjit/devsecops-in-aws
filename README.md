@@ -1,6 +1,70 @@
 ![](assets/DevSecOps_pic.png)
 
-## Overview
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Overview](#overview)
+    - [AWS Services](#aws-services)
+    - [Monitoring Tools](#monitoring-tools)
+    - [Frameworks](#frameworks)
+    - [Database](#database)
+  - [Application Architecture](#application-architecture)
+  - [AWS Architecture](#aws-architecture)
+  - [Application Source Code](#application-source-code)
+- [Prerequisites](#prerequisites)
+  - [EC2 Instance](#ec2-instance)
+  - [AWS CLI setup](#aws-cli-setup)
+  - [Kubectl setup](#kubectl-setup)
+  - [Terraform Setup](#terraform-setup)
+  - [EKS and RDS Cluster Provisioning with Terraform](#eks-and-rds-cluster-provisioning-with-terraform)
+    - [EKS-auth ConfigMap](#eks-auth-configmap)
+  - [ECR (Elastic Container Registry) Setup](#ecr-elastic-container-registry-setup)
+  - [S3 Bucket Configuration](#s3-bucket-configuration)
+  - [Security Scan Logs collection with AWS Lambda](#security-scan-logs-collection-with-aws-lambda)
+  - [Security Hub](#security-hub)
+  - [Notification Tools](#notification-tools)
+  - [Simple Notification Service (SNS) :](#simple-notification-service-sns-)
+  - [Simple Email Service (SES) :](#simple-email-service-ses-)
+- [The Pipeline](#the-pipeline)
+    - [Source Stage:](#source-stage)
+    - [SonarQube:](#sonarqube)
+    - [PHPStan:](#phpstan)
+    - [Dependency-Check:](#dependency-check)
+    - [Docker Image Build:](#docker-image-build)
+    - [Docker Image Scan with Trivy:](#docker-image-scan-with-trivy)
+    - [Docker Image Push:](#docker-image-push)
+    - [Deploy to EKS Cluster:](#deploy-to-eks-cluster)
+    - [OWASP-ZAP:](#owasp-zap)
+  - [GitHub Conection](#github-conection)
+  - [CodeCommit Configuration](#codecommit-configuration)
+  - [System Manager - Parameter Store](#system-manager---parameter-store)
+  - [CodeBuild Project Configuration](#codebuild-project-configuration)
+    - [CodeBuild Service Role](#codebuild-service-role)
+    - [Trust Relationship](#trust-relationship)
+    - [IAM Permission Policies for CodeBuild](#iam-permission-policies-for-codebuild)
+      - [AWS Managed Policy](#aws-managed-policy)
+      - [Customer Managed Policy](#customer-managed-policy)
+      - [Auto Generated Policy](#auto-generated-policy)
+  - [CodePipeline Configuration](#codepipeline-configuration)
+    - [CodePipeline Service Role](#codepipeline-service-role)
+    - [Trust Relationship](#trust-relationship-1)
+    - [IAM Permission Policies for CodePipeline](#iam-permission-policies-for-codepipeline)
+      - [Auto Generated Policy](#auto-generated-policy-1)
+      - [Sonarqube Installation](#sonarqube-installation)
+    - [SonarQube Project Setup](#sonarqube-project-setup)
+    - [SonarQube Quality Gate Setup](#sonarqube-quality-gate-setup)
+- [Monitoring with Prometheus and Grafana](#monitoring-with-prometheus-and-grafana)
+- [Autoscaling with metrics server](#autoscaling-with-metrics-server)
+- [Security Vulnerability Fixing Before / After](#security-vulnerability-fixing-before--after)
+  - [**Docker Image Vulnerability scanning with Trivy (Before)**](#docker-image-vulnerability-scanning-with-trivy-before)
+  - [**Docker Image Vulnerability Solve scanning with Trivy (After fixing Vulnerability)**](#docker-image-vulnerability-solve-scanning-with-trivy-after-fixing-vulnerability)
+  - [**Docker Image scanning with Trivy (Pipeline Fail when Critical Vulnerability found)**](#docker-image-scanning-with-trivy-pipeline-fail-when-critical-vulnerability-found)
+  - [**Quality Gate Condition checking Vulnerability with SonarQube (Pipeline Failed)**](#quality-gate-condition-checking-vulnerability-with-sonarqube-pipeline-failed)
+  - [**Quality Gate Condition checking Vulnerability with SonarQube (Pipeline Passed after fixing Vulnerability)**](#quality-gate-condition-checking-vulnerability-with-sonarqube-pipeline-passed-after-fixing-vulnerability)
+  - [**OWASP ZAP Report Before**](#owasp-zap-report-before)
+  - [**OWASP ZAP Report After**](#owasp-zap-report-after)
+
+
+# Overview
 
 DevOps is the practice of developing software that integrates software development and IT operations to deliver software faster and ensure continuous delivery with high quality. However, security often becomes an afterthought when designing and managing a CI/CD pipeline, infrastructure, etc., for deploying large-scale applications. Therefore, it is important to incorporate security in every step of the Software Development Life Cycle (SDLC). DevSecOps is the practice of automating security throughout the SDLC by combining development, operations, and security into a single pipeline.
 
@@ -86,7 +150,7 @@ The following image potrays the architecture of the entire infrastructure in AWS
 
 Fork the above repositories into your own github account.
 
-## Prerequisites
+# Prerequisites
 
 Before we can build a pipeline to deploy our application we need to prepare several things. These include Installing required tools, EKS and RDS cluster provisioning for our deployment environment and creating IAM roles for building the pipeline.
 
@@ -431,7 +495,7 @@ This should import the codes into two files one named `lambda_function.py` and a
 
 ![](assets/Security-Hub-enable.png) 
 
-# Notification Tools
+## Notification Tools
 
 ## Simple Notification Service (SNS) :
 
@@ -477,7 +541,7 @@ This should import the codes into two files one named `lambda_function.py` and a
 
   ![Alt Text](./assets/smtp-settings.PNG)
 
-## The Pipeline
+# The Pipeline
 
 Our main objective in this project is to integrate Security into DevOps. We all know that the backbone of DevOps is a CI/CD Pipeline. The following image shows a basic outline of a typical DevSecOps pipeline.
 
