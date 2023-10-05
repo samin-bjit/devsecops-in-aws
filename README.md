@@ -1193,3 +1193,36 @@ helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 
 helm install metrics-server metrics-server/metrics-server -n prometheus
 ```
+ 
+# Security Vulnerability Fixing Before / After
+
+
+## **Docker Image Vulnerability scanning with Trivy (Before)**
+
+![Alt Text](./assets/docker-image-vulnerability-before.png)
+
+## **Docker Image Vulnerability Solve scanning with Trivy (After fixing Vulnerability)**
+
+![Alt Text](./assets/docker-image-vulnerability-after.png)
+
+## **Docker Image scanning with Trivy (Pipeline Fail when Critical Vulnerability found)**
+
+![Alt Text](./assets/docker-image-vulnerability-after.png)
+
+
+## **Quality Gate Condition checking Vulnerability with SonarQube (Pipeline Failed)**
+
+![Alt Text](./assets/Vaccination-registration-sonaranalysis-qualitygate-condition.png)
+
+## **Quality Gate Condition checking Vulnerability with SonarQube (Pipeline Passed after fixing Vulnerability)**
+
+![Alt Text](./assets/qualitygate-passed.png)
+
+## **OWASP ZAP Report Before**
+
+![](./assets/zap-before.png)
+
+## **OWASP ZAP Report After**
+
+![](./assets/zap-after.png)
+
