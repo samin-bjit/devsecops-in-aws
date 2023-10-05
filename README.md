@@ -1,8 +1,16 @@
 ![](assets/DevSecOps_pic.png)
 
+
+# Overview
+
+DevOps is the practice of developing software that integrates software development and IT operations to deliver software faster and ensure continuous delivery with high quality. However, security often becomes an afterthought when designing and managing a CI/CD pipeline, infrastructure, etc., for deploying large-scale applications. Therefore, it is important to incorporate security in every step of the Software Development Life Cycle (SDLC). DevSecOps is the practice of automating security throughout the SDLC by combining development, operations, and security into a single pipeline.
+
+In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages of the pipeline. Finally, we will setup monitoring and notification services.
+
+
 # Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Overview](#overview)
+- [Table of Contents](#table-of-contents)
     - [AWS Services](#aws-services)
     - [Monitoring Tools](#monitoring-tools)
     - [Frameworks](#frameworks)
@@ -63,12 +71,6 @@
   - [**OWASP ZAP Report Before**](#owasp-zap-report-before)
   - [**OWASP ZAP Report After**](#owasp-zap-report-after)
 
-
-# Overview
-
-DevOps is the practice of developing software that integrates software development and IT operations to deliver software faster and ensure continuous delivery with high quality. However, security often becomes an afterthought when designing and managing a CI/CD pipeline, infrastructure, etc., for deploying large-scale applications. Therefore, it is important to incorporate security in every step of the Software Development Life Cycle (SDLC). DevSecOps is the practice of automating security throughout the SDLC by combining development, operations, and security into a single pipeline.
-
-In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages of the pipeline. Finally, we will setup monitoring and notification services.
 
 For the project you might require basic knowledge of the following tools and services:
 
