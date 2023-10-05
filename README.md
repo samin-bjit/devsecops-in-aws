@@ -1,12 +1,10 @@
 ![](assets/DevSecOps_pic.png)
 
-# *Scaling your Application with DevSecOps*
-
 ## Overview
 
 DevOps is the practice of developing software that integrates software development and IT operations to deliver software faster and ensure continuous delivery with high quality. However, security often becomes an afterthought when designing and managing a CI/CD pipeline, infrastructure, etc., for deploying large-scale applications. Therefore, it is important to incorporate security in every step of the Software Development Life Cycle (SDLC). DevSecOps is the practice of doing this by automating security throughout the SDLC by combining development, operations, and security into a single pipeline.
 
-In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages. Finally, we will setup monitoring in various stages.
+In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages of the pipeline. Finally, we will setup monitoring and notification services.
 
 For the project you might require basic knowledge of the following tools and services:
 
@@ -164,7 +162,7 @@ aws configure
 
 Create an access key for aws command line interface. Download the access key after generation and save it in a safe place because the secret key can't be obtained later.
 
-**Step 7:** Use the access key and secret access kye to configure the AWS CLI. The configuration should look like the image below.
+**Step 7:** Use the access key and secret access key to configure the AWS CLI. The configuration should look like the image below.
 
 ![aws-cli-configuration.png](assets/aws-cli-configuration.png)
 
@@ -900,7 +898,6 @@ CodePipeline Stages and Action Group
 
 * This policy will be auto generated when you create a build project and click on new service role.
 
-## 
 
 #### Sonarqube Installation
 
@@ -1101,8 +1098,6 @@ Login Password: Admin
 ### SonarQube Project Setup
 
 **Step 1:** Create a project and give a project name, click on setup
-
-  ![Alt Text](./assets/Sonarqube-project-name.png)
 
 **Step 2:** Click on Generate a Token
 
