@@ -30,18 +30,9 @@ In this project, we will build a complete CI/CD pipeline for a microservice appl
   - [Security Scan Logs collection with AWS Lambda](#security-scan-logs-collection-with-aws-lambda)
   - [Security Hub](#security-hub)
   - [Notification Tools](#notification-tools)
-  - [Simple Notification Service (SNS) :](#simple-notification-service-sns-)
-  - [Simple Email Service (SES) :](#simple-email-service-ses-)
+    - [Simple Notification Service (SNS)](#simple-notification-service-sns)
+    - [Simple Email Service (SES)](#simple-email-service-ses)
 - [The Pipeline](#the-pipeline)
-    - [Source Stage:](#source-stage)
-    - [SonarQube:](#sonarqube)
-    - [PHPStan:](#phpstan)
-    - [Dependency-Check:](#dependency-check)
-    - [Docker Image Build:](#docker-image-build)
-    - [Docker Image Scan with Trivy:](#docker-image-scan-with-trivy)
-    - [Docker Image Push:](#docker-image-push)
-    - [Deploy to EKS Cluster:](#deploy-to-eks-cluster)
-    - [OWASP-ZAP:](#owasp-zap)
   - [GitHub Conection](#github-conection)
   - [CodeCommit Configuration](#codecommit-configuration)
   - [System Manager - Parameter Store](#system-manager---parameter-store)
@@ -499,7 +490,7 @@ This should import the codes into two files one named `lambda_function.py` and a
 
 ## Notification Tools
 
-## Simple Notification Service (SNS) :
+### Simple Notification Service (SNS)
 
 **Step 1:** First,Create a topic of SNS
 
@@ -525,7 +516,7 @@ This should import the codes into two files one named `lambda_function.py` and a
 
   ![Alt Text](./assets/sns-subscription-confirm.png) 
 
-## Simple Email Service (SES) :
+### Simple Email Service (SES)
 
 **Step 1:** Create a identity of SES.
 
@@ -551,49 +542,49 @@ Our main objective in this project is to integrate Security into DevOps. We all 
 
 CodePipeline Stages and Action Group
 
-### Source Stage:
+ **Source Stage**
 
 - In this stage, source code will be fetched through the pipeline.
 - You can find the source code in the repository.
 
-### SonarQube:
+ **SonarQube**
 
 - This action group will be provided by CodeBuild Stage. You can find the process of creating a build project configuration file in the above section of "CodeBuild Project Configuration".
 - Follow the CodeBuildProjectConfiguration process similarly to PHPStan, Dependency-Check and OWASP-ZAP.
 - You can find the process of integrating this "SonarQube" tool in the repository.
 
-### PHPStan:
+ **PHPStan**
 
 - This action group will be provided by CodeBuild Stage.
 - You can find the process of integrating this "PHPStan" tool in the repository..
 
-### Dependency-Check:
+ **Dependency-Check**
 
 - This action group will be provided by CodeBuild Stage.
 - You can find the process of integrating this "Dependency-Check" tool in the repository.
 
-### Docker Image Build:
+ **Docker Image Build**
 
 - You can find the process of creating a build project configuration file in the above section of "CodeBuild Project Configuration".
 
 - You can also find the docker image build yaml file in the repository.
 
-### Docker Image Scan with Trivy:
+ **Docker Image Scan with Trivy**
 
 - Follow the section of CodeBuild Project Configuration and scan the docker image with the SecOps tool (Trivy).
 - You can find the buildspec file of trivy (docker image scan) in the repository.
 
-### Docker Image Push:
+ **Docker Image Push**
 
 - Follow the section of CodeBuild Project Configuration and push the docker image to ECR.
 - You can also find the docker image push yaml file in the repository.
 
-### Deploy to EKS Cluster:
+ **Deploy to EKS Cluster**
 
 - Follow the section of CodeBuild Project Configuration and deploy the manifest files to EKS cluster.
 - You can find the kubernetes manifest files and buildspec file for deployment in EKS Cluster inside the repository.
 
-### OWASP-ZAP:
+ **OWASP-ZAP**
 
 - This action group will be provided by CodeBuild Stage. You can find the process of integrating this "OWASP-ZAP" tool in "Security Tools" section.
 - You can find the process of integrating this "OWASP-ZAP" tool in the repository.
