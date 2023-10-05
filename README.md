@@ -8,9 +8,8 @@ DevOps is the practice of developing software that integrates software developme
 In this project, we will build a complete CI/CD pipeline for a microservice application as most large-scale software follows microservice architecture nowadays. More importantly, we will include several security tools that can conduct security scans at various stages of the pipeline. Finally, we will setup monitoring and notification services.
 
 
-# Table of Contents
+# Table of Contents<!-- omit from toc -->
 - [Overview](#overview)
-- [Table of Contents](#table-of-contents)
     - [AWS Services](#aws-services)
     - [Monitoring Tools](#monitoring-tools)
     - [Frameworks](#frameworks)
