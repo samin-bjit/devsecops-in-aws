@@ -348,29 +348,34 @@ aws eks update-kubeconfig --name <eks-cluster-name> --region <aws-region-name>
 ```bash
 kubectl cluster-info
 ```
+**Step 8:** Create a namespace where all our deployment would reside by running the following command
 
-**Step 8:** We can check cluster is functioning properly by going to the `AWS Console` `>` `Elastic Kuberntetes Service` `>` `Clusters`.
+```bash
+kubectl create namespace vaccination-system-dev
+```
+
+**Step 9:** We can check cluster is functioning properly by going to the `AWS Console` `>` `Elastic Kuberntetes Service` `>` `Clusters`.
 
 ![vaccination-system-eks-Clusters-EKS.png](assets/vaccination-system-eks-Clusters-EKS.png)
 
-**Step 9:** Head over to `RDS` > `Databases` and there should be a RDS instance with the name `vaccination-rds`. Make note or copy the RDS endpoint address which will be needed in the later steps.
+**Step 10:** Head over to `RDS` > `Databases` and there should be a RDS instance with the name `vaccination-rds`. Make note or copy the RDS endpoint address which will be needed in the later steps.
 
-**Step 10:** Next, create an EC2 instance inside the same VPC as the EKS cluster. The VPC name should be `vaccination-vpc` which is created with terraform. Make sure to choose a public subnet to launch the EC2 as well. Use `Amazon Linux 2023` image.
+**Step 11:** Next, create an EC2 instance inside the same VPC as the EKS cluster. The VPC name should be `vaccination-vpc` which is created with terraform. Make sure to choose a public subnet to launch the EC2 as well. Use `Amazon Linux 2023` image.
 
-**Step 11:** Connect to the EC2 and execute the following command to install `mariadb-server`
+**Step 12:** Connect to the EC2 and execute the following command to install `mariadb-server`
 
 ```bash
 sudo yum install -y mariadb105-server
 ```
 
-**Step 12:** After the installation, connect to the database
+**Step 13:** After the installation, connect to the database
 Make sure the replace the `rds-hostname` with the RDS endpoint previously found in **Step 9**.
 
 ```bash
 mysql -h <rds-hostname> -u root --password='12345678'
 ```
 
-**Step 13:** Next, run the following MySQL queries that will create two databases and create a new user named 'vms-user' grant access to the new databases;
+**Step 14:** Next, run the following MySQL queries that will create two databases and create a new user named 'vms-user' grant access to the new databases;
 
 ```sql
 -- Run as MySQL Root user
@@ -385,7 +390,7 @@ GRANT ALL PRIVILEGES ON appointment.* to 'vms-user';
 FLUSH PRIVILEGES;
 ```
 
-**Step 14:(Optional)** Make sure to change the root password to a new one as the default password set for the root user is not secure. Replace `<new-password>` with a strong password in the command below.
+**Step 15:(Optional)** Make sure to change the root password to a new one as the default password set for the root user is not secure. Replace `<new-password>` with a strong password in the command below.
 
 ```sql
 ALTER USER 'root'@'%' IDENTIFIED BY '<new-password>'; 
